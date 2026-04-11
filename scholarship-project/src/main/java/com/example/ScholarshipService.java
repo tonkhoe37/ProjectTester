@@ -3,19 +3,31 @@ public class ScholarshipService {
 
     public static String evaluate(double gpa, int credits, int violations) {
 
-        // 1. Validate input
         if (gpa < 0 || gpa > 4.0 ||
-                credits < 0 || credits > 30 ||
-                violations < 0 || violations > 5) {
-            return "Input khong hop le";
+            credits < 0 || credits > 30 ||
+            violations < 0 || violations > 5) {
+
+            return "Input khong hop le";      
         }
 
-        // 2. Full scholarship
-        if (gpa >= 3.6 && credits >= 15 && violations == 0) {
-            return "Hoc bong toan phan";
+     
+        double score = gpa * 0.7 + credits * 0.1;
+        if (violations > 0) {
+
+            score = score - violations * 0.2; 
         }
 
-        // 3. Default
-        return "Khong co hoc bong";
+        if (score >= 3.5) {
+
+            return "Hoc bong toan phan";    
+
+        }
+
+        if (score >= 3.0) {
+
+            return "Hoc bong mot phan";    
+        }
+
+        return "Khong co hoc bong";           
     }
 }
